@@ -1,3 +1,5 @@
+package Busqueda;
+
 public class Busqueda
 {
     String keyWord;

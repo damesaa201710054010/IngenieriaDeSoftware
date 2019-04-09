@@ -1,3 +1,5 @@
+package Busqueda;
+    
 public class BusquedaMaterial extends Busqueda
 {
     String resultado;
