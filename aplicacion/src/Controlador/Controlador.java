@@ -5,19 +5,22 @@
  */
 package Controlador;
 
+import Busqueda.BusquedaMaterial;
 import java.util.ArrayList;
 
 /**
  *
  * @author danys
  */
-public class Aplicacion {
+public class Controlador {
 
     /**
      * @param args the command line argument
      */
     public static void main(String[] args) {
-        
+        Conexion base = new Conexion();
+        BusquedaMaterial bus = new BusquedaMaterial("Titulo", "De animales a dioses", base);
+        System.out.println(bus.realizarBusqueda());
         
     }
     

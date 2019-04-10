@@ -48,7 +48,7 @@ public class BusquedaMaterial extends Busqueda {
         String resultado = "Se encontraron los siguientes registros: ";
         for(int i  = 0; i < resultados.size(); i++)
         {
-            if(resultados.equals(keyWord))
+            if(resultados.get(i).equals(keyWord))
             {
                 resultado = resultado + resultados.get(i);
             }
