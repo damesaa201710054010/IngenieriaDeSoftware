@@ -1,0 +1,17 @@
+Patrones de Diseño
+1.Observer (Comportamiento)
+2.Factory Method (Creacional)
+3.Chain of Responsability (Comportamiento)
+
+Justificaciones: 
+1.Decidimos usar el patron de comportamiento observer, dado a que se necesita hacer
+una comunicacion, que me permite hacer una busqueda en una BD, recogiendo la información
+y mostrar lo recolectado al usuario.
+2. Buscamos tener mas que una clase constructora, es tener una clase por la cual podamos hacer
+los diferentes tipos de busqueda, ya sea de un material o de un servicio.
+3. Decidimos usar el patron de la cadena de responsabilidad por que este nos permite, distribuir
+los trabajos a las clases para que no se sofoquen con cargas pesadas, es decir, que podemos tener
+una clase de busqueda de material, sabiendo que tenemos diferentes tipos de material como revistas,
+material digital, libros entre otros...,  podemos crear una cadena para la busqueda de materialess
+la cual individualmente buscan su cometido, pero en union todos ( como una cadena ) busquen lo que 
+son los materiales de la biblioteca.
