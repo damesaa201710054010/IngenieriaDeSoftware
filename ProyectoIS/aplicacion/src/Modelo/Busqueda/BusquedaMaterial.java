@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Busqueda;
+package Modelo.Busqueda;
 
-import Controlador.Conexion;
+import Modelo.Conexion.ConexionMedia;
 import java.util.ArrayList;
 
 /**
@@ -20,8 +20,8 @@ public class BusquedaMaterial extends Busqueda {
      * @param keyWord
      * @param conexionBaseDeDatos
      */
-    Conexion conexionBaseDeDatos;
-    public BusquedaMaterial(String tipoDeBusqueda, String keyWord, Conexion conexionBaseDeDatos)
+    ConexionMedia conexionBaseDeDatos;
+    public BusquedaMaterial(String tipoDeBusqueda, String keyWord, ConexionMedia conexionBaseDeDatos)
     {
         super(tipoDeBusqueda, keyWord);
         this.conexionBaseDeDatos = conexionBaseDeDatos;
