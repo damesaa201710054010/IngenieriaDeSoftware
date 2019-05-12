@@ -21,44 +21,25 @@ public class BusquedaMaterial extends Busqueda {
      * @param conexionBaseDeDatos
      */
     ConexionMedia conexionBaseDeDatos;
-    public BusquedaMaterial(String tipoDeBusqueda, String keyWord, ConexionMedia conexionBaseDeDatos)
+    public BusquedaMaterial(String columna, String keyWord, ConexionMedia conexionBaseDeDatos)
     {
-        super(tipoDeBusqueda, keyWord);
+        super(columna, keyWord);
         this.conexionBaseDeDatos = conexionBaseDeDatos;
     }
     
     public String realizarBusqueda()
     {
         String resultadoEnviar= "";
-        ArrayList<Object> resultados = new ArrayList<>();
-        resultados = conexionBaseDeDatos.consultaColumna(tipoDeBusqueda);
-        if(resultados.contains(keyWord))
+        boolean estadoDeRespuesta = false;
+        estadoDeRespuesta = conexionBaseDeDatos.dato(columna, keyWord);
+        Respuesta construirRespuesta =  new Respuesta();
+        if(estadoDeRespuesta)
         {
-            resultadoEnviar = construirRespuestaPositiva(resultados);
-        }else
+            resultadoEnviar = construirRespuesta.respuestaPositiva(keyWord, columna );
+        }else if(!estadoDeRespuesta)
         {
-            resultadoEnviar = construirRepuestaNegativa();
+            resultadoEnviar = construirRespuesta.respuestaNegativa(keyWord, columna);
         }
-        return resultadoEnviar;
-        
-    }
-    
-    private String construirRespuestaPositiva(ArrayList<Object> resultados)
-    {
-        String resultado = "Se encontraron los siguientes registros: ";
-        for(int i  = 0; i < resultados.size(); i++)
-        {
-            if(resultados.get(i).equals(keyWord))
-            {
-                resultado = resultado + resultados.get(i);
-            }
-        }
-        return resultado;
-    }
-    
-    private String construirRepuestaNegativa()
-    {
-        String resp = "No se han encontrado registros para la siguiente busqueda: "+keyWord;
-        return resp;
+        return resultadoEnviar;   
     }
 }

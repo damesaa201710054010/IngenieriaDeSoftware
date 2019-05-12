@@ -19,6 +19,12 @@ public class Conexion {
     private final String URL = "jdbc:mysql://localhost:3306/librosdisponibles?useTimezone=true&serverTimezone=UTC"; 
     private final String USERNAME = "root";
     private final String PASSWORD = "2611";
+    Connection conexionBaseDeDatos;
+    
+    public Conexion()
+    {
+        conexionBaseDeDatos = getConexion();
+    }
     
     private Connection getConexion()
     {
@@ -27,10 +33,6 @@ public class Conexion {
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = (Connection) DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            /*if(con != null)
-            {
-                System.out.println ("conexion establecida");
-            }*/
         }catch(ClassNotFoundException | SQLException e){
             System.out.println(e);
         }
@@ -42,22 +44,40 @@ public class Conexion {
      * @param columna
      * @return
      */
-    public ArrayList<Object> consultaColumna(String columna)
+    public ArrayList<Object> getColumna(String columna)
     {
         ArrayList<Object> resultado = new ArrayList<>();
         try{    
-            Connection conexionBaseDeDatos = getConexion();
             PreparedStatement consulta = conexionBaseDeDatos.prepareStatement("SELECT"+" "+columna+" "+"FROM libros");
             ResultSet resultados = consulta.executeQuery();
             while(resultados.next())
             {
                resultado.add(resultados.getString(columna));
             }
-            conexionBaseDeDatos.close();
             resultados.close();
         }catch(Exception e){
             System.out.println(e);
         }
         return resultado;
     }
+    
+    
+    public boolean  dato(String columna, String keyWord)
+    {
+        String resultado = "";
+        try{  
+            PreparedStatement consulta = conexionBaseDeDatos.prepareStatement("SELECT"+" "+columna+" "+"FROM libros"+" where Titulo = "+ "\""+keyWord+"\"");
+            ResultSet resultados = consulta.executeQuery();
+            while(resultados.next())
+            {
+               resultado = resultados.getString(columna);
+            }
+            resultados.close();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return resultado == keyWord;
+    }
+    
+    
 }

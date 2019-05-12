@@ -10,11 +10,11 @@ package Modelo.Busqueda;
  * @author danys
  */
 public class Busqueda {
-    String tipoDeBusqueda;
+    String columna;
     String keyWord;
-    public Busqueda(String tipoDeBusqueda, String keyWord)
+    public Busqueda(String columna, String keyWord)
     {
         this.keyWord = keyWord;
-        this.tipoDeBusqueda = tipoDeBusqueda;
+        this.columna = columna;
     } 
 }

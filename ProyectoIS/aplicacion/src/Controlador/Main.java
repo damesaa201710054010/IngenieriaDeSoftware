@@ -5,15 +5,12 @@
  */
 package Controlador;
 
-import Modelo.Busqueda.*;
-import Busqueda.BusquedaMaterial;
-import java.util.ArrayList;
-
+import Modelo.Busqueda.BusquedaMaterial;
 /**
  *
  * @author danys
  */
-public class Controlador {
+public class Main {
 
     /**
      * @param args the command line argument
@@ -21,10 +18,10 @@ public class Controlador {
     
     
     public static void main(String[] args) {
-        Conexion base = new Conexion();
-        BusquedaMaterial bus = new BusquedaMaterial("Titulo", "De animales a dioses", base);
-        System.out.println(bus.realizarBusqueda());
-        
+        System.out.println("main");
+        ControladorConexion conexionApp = new ControladorConexion();
+        System.out.println("metodo");
+        conexionApp.comunicacion();
     }
     
 }

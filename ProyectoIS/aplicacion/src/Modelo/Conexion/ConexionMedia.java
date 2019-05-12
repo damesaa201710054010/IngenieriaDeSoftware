@@ -23,33 +23,13 @@ public class ConexionMedia {
         this.baseDeDatos = baseDeDatos;
     }
     
-    private ArrayList<Object> realizarBusquedaPorTitulo(String titulo)
+    public ArrayList<Object> realizarBusquedaPorTituloTodos(String columna)
     {
-        return baseDeDatos.consultaColumna(titulo);
+        return baseDeDatos.getColumna(columna);
     }
     
-    /**
-     *
-     * @param columna
-     * @return
-     */
-    public ArrayList<Object> consultaColumna(String columna)
+    public boolean dato(String columna, String keyWord)
     {
-        ArrayList<Object> resultado = new ArrayList<>();
-        try{    
-            Connection conexionBaseDeDatos = getConexion();
-            PreparedStatement consulta = conexionBaseDeDatos.prepareStatement("SELECT"+" "+columna+" "+"FROM libros");
-            ResultSet resultados = consulta.executeQuery();
-            while(resultados.next())
-            {
-               resultado.add(resultados.getString(columna));
-            }
-            conexionBaseDeDatos.close();
-            resultados.close();
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        return resultado;
+        return baseDeDatos.dato(columna, keyWord);
     }
-    
 }
