@@ -25,14 +25,13 @@ public class MainActivity extends AppCompatActivity {
     {
 
         String columna = texto1.getText().toString();
-        String HOST = "192.168.2.23";
+        String HOST = "192.168.137.1";
         int puerto = 15000;
         DataInputStream in;
         DataOutputStream out;
-
+        //resultado.setText(columna+" se encontro disponible en "+ "titulo");
         try {
-            System.out.println("h");
-
+            //System.out.println("h");
             Socket sc = new Socket(HOST, puerto);
             resultado.setText(columna);
             in = new DataInputStream(sc.getInputStream());

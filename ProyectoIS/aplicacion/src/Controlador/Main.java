@@ -5,7 +5,7 @@
  */
 package Controlador;
 
-import Modelo.Busqueda.BusquedaMaterial;
+import Modelo.Busqueda.BusquedaAutor;
 /**
  *
  * @author danys
@@ -18,10 +18,7 @@ public class Main {
     
     
     public static void main(String[] args) {
-        System.out.println("main");
-        ControladorConexion conexionApp = new ControladorConexion();
-        System.out.println("metodo");
-        conexionApp.comunicacion();
+        ControladorPrincipal servidor = new ControladorPrincipal();
     }
     
 }

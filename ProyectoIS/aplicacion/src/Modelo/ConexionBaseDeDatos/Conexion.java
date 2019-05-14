@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo.Conexion;
+package Modelo.ConexionBaseDeDatos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -44,9 +44,9 @@ public class Conexion {
      * @param columna
      * @return
      */
-    public ArrayList<Object> getColumna(String columna)
+    public ArrayList<String> getColumna(String columna)
     {
-        ArrayList<Object> resultado = new ArrayList<>();
+        ArrayList<String> resultado = new ArrayList<>();
         try{    
             PreparedStatement consulta = conexionBaseDeDatos.prepareStatement("SELECT"+" "+columna+" "+"FROM libros");
             ResultSet resultados = consulta.executeQuery();
@@ -62,7 +62,7 @@ public class Conexion {
     }
     
     
-    public boolean  dato(String columna, String keyWord)
+    public String  getDato(String columna, String keyWord)
     {
         String resultado = "";
         try{  
@@ -76,8 +76,6 @@ public class Conexion {
         }catch(Exception e){
             System.out.println(e);
         }
-        return resultado == keyWord;
+        return resultado;
     }
-    
-    
 }

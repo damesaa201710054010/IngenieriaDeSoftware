@@ -9,16 +9,16 @@ import java.net.*;
  
 import java.io.*;
 import static java.lang.System.in;
-import Modelo.Conexion.Conexion;
-import Modelo.Conexion.ConexionMedia;
+import Modelo.ConexionBaseDeDatos.Conexion;
+import Modelo.ConexionBaseDeDatos.ConexionMedia;
 import Modelo.Busqueda.Busqueda;
-import Modelo.Busqueda.BusquedaMaterial;
+import Modelo.Busqueda.BusquedaAutor;
 //importar la libreria java.io
 /**
  *
  * @author danys
  */
-public class ControladorConexion {
+public class ControladorPrincipal {
     String keyWord;
     Conexion conexionBase = new Conexion();
     ConexionMedia intermediario = new ConexionMedia(conexionBase);
@@ -45,7 +45,7 @@ public class ControladorConexion {
                 System.out.println("esperando");
                 keyWord = in.readUTF();
                 System.out.println(keyWord);
-                BusquedaMaterial busqueda = new BusquedaMaterial("Titulo", keyWord, intermediario);
+                BusquedaAutor busqueda = new BusquedaAutor("Titulo", keyWord, intermediario);
                 envioDeResultado = busqueda.realizarBusqueda();
                 out.writeUTF(envioDeResultado);
                 sc.close();

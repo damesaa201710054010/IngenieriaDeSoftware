@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo.Conexion;
+package Modelo.ConexionBaseDeDatos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,13 +23,13 @@ public class ConexionMedia {
         this.baseDeDatos = baseDeDatos;
     }
     
-    public ArrayList<Object> realizarBusquedaPorTituloTodos(String columna)
+    public String busquedaEspecifica(String keyWord, String columna)
     {
-        return baseDeDatos.getColumna(columna);
+        return baseDeDatos.getDato(columna , keyWord);
     }
     
-    public boolean dato(String columna, String keyWord)
+    public ArrayList<String> busquedaKeyWord(String columna)
     {
-        return baseDeDatos.dato(columna, keyWord);
+        return baseDeDatos.getColumna(columna);
     }
 }

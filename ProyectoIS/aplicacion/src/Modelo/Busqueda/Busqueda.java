@@ -4,17 +4,21 @@
  * and open the template in the editor.
  */
 package Modelo.Busqueda;
+import java.util.ArrayList;
 
 /**
  *
  * @author danys
  */
-public class Busqueda {
-    String columna;
-    String keyWord;
-    public Busqueda(String columna, String keyWord)
+public abstract class Busqueda {
+    protected String tipoDeBusqueda;
+    protected String keyWord;
+    public Busqueda(String tipoDeBusqueda, String keyWord)
     {
+        this.tipoDeBusqueda = tipoDeBusqueda;
         this.keyWord = keyWord;
-        this.columna = columna;
-    } 
+    }
+   abstract public boolean busquedaEspecifica(String keyWord);
+   abstract public ArrayList<String> busquedaKeyWord(String keyWord);
+   
 }
