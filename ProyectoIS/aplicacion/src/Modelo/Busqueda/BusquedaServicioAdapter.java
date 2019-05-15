@@ -4,11 +4,39 @@
  * and open the template in the editor.
  */
 package Modelo.Busqueda;
+import java.util.ArrayList;
 
 /**
  *
  * @author danys
  */
-public class BusquedaServicioAdapter {
+public class BusquedaServicioAdapter extends Busqueda {
+    private BusquedaServicio servicio;
+    public BusquedaServicioAdapter(String keyWord)
+    {
+        super(keyWord);
+        servicio = new BusquedaServicio(keyWord);
+    }
+    
+    public boolean busquedaEspecifica()
+    {
+        ArrayList<Servicio> consulta = servicio.busquedaGeneral();
+        for(int i = 0; i < consulta.size(); ++i)
+        {
+            if(consulta.get(i).getNombre().equalsIgnoreCase(keyWord))
+            {
+                return true;
+            }
+            
+        }
+        return false;
+    }
+    
+    public ArrayList<Object> busquedaKeyWord()
+    {
+        ArrayList<Object> consulta = new ArrayList<>();
+        consulta = servicio.busquedaDescripcion(keyWord);
+        return consulta;
+    }
     
 }

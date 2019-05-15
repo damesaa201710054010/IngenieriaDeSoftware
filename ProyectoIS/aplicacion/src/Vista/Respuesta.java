@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo.Referenciacion;
+package Vista;
 
 /**
  *
  * @author danys
  */
-public class Referenciacion {
+public class Respuesta {
     
 }

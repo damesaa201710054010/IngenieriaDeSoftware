@@ -6,6 +6,7 @@
 package Controlador;
 
 import Modelo.Busqueda.BusquedaAutor;
+import Modelo.ConexionBaseDeDatos.Conexion;
 /**
  *
  * @author danys
@@ -18,7 +19,8 @@ public class Main {
     
     
     public static void main(String[] args) {
-        ControladorPrincipal servidor = new ControladorPrincipal();
+        Conexion bd = new Conexion();
+        System.out.println(bd.getDato("Titulo", "Jamas"));
     }
     
 }

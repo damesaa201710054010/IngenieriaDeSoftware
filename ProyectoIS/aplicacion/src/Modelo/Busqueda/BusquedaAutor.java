@@ -5,6 +5,7 @@
  */
 package Modelo.Busqueda;
 import Modelo.ConexionBaseDeDatos.ConexionMedia;
+import Modelo.Referenciacion.Referencia;
 import java.util.ArrayList;
 
 /**
@@ -20,40 +21,47 @@ public class BusquedaAutor extends Busqueda {
      * @param conexionBaseDeDatos
      */
     ConexionMedia conexionBaseDeDatos;
-    public BusquedaAutor(String tipoDeBusqueda, String keyWord, ConexionMedia conexionBaseDeDatos)
+    public BusquedaAutor(String keyWord, ConexionMedia conexionBaseDeDatos, Referencia cita)
     {
-        super(tipoDeBusqueda, keyWord);
+        super(keyWord, cita);
         this.conexionBaseDeDatos = conexionBaseDeDatos;
     }
     
     @Override
-    public boolean busquedaEspecifica(String keyWord)
+    public boolean busquedaEspecifica()
     {
-        String resultadoBD= "";
+        Libro resultadoBD= null;
         boolean respuesta = false;
-        resultadoBD = conexionBaseDeDatos.busquedaEspecifica(tipoDeBusqueda, keyWord);
-        if(keyWord.equals(resultadoBD))
+        resultadoBD = conexionBaseDeDatos.busquedaEspecifica(keyWord, "Autor");
+        if(resultadoBD != null) 
         {
             respuesta = true;
-        }else if(resultadoBD == null || !(keyWord.equals(resultadoBD)))
+            citacion = cita.construirCita(resultadoBD.getAutor(), resultadoBD.getAñoPublicacion(), resultadoBD.getTitulo(), resultadoBD.getLugarPublicacion(), resultadoBD.getEditorial());
+        }else if(resultadoBD == null || !(resultadoBD.getAutor().equals(keyWord)))
         {
             respuesta = false;
         }
-        return respuesta;   
+        return respuesta;
+        
     }
     
     @Override
-    public ArrayList<String> busquedaKeyWord(String keyWord)
+    public ArrayList<Object> busquedaKeyWord()
     {
-        ArrayList<String> resultadosBD = conexionBaseDeDatos.busquedaKeyWord(tipoDeBusqueda);
-        ArrayList<String> respuesta = new ArrayList<>();
+        ArrayList<Libro> resultadosBD = conexionBaseDeDatos.busquedaKeyWord();
+        ArrayList<Object> respuesta = new ArrayList<>();
         for(int i = 0; i < resultadosBD.size(); i++)
         {
-            if(resultadosBD.get(i).contains(keyWord))
+            if(resultadosBD.get(i).getAutor().equals(keyWord))
             {
                 respuesta.add(resultadosBD.get(i));
             }
         }
         return respuesta;
+    }
+    
+    public String getCita()
+    {
+        return citacion;
     }
 }

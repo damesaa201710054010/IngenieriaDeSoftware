@@ -5,6 +5,7 @@
  */
 package Modelo.ConexionBaseDeDatos;
 
+import Modelo.Busqueda.Libro;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -23,13 +24,13 @@ public class ConexionMedia {
         this.baseDeDatos = baseDeDatos;
     }
     
-    public String busquedaEspecifica(String keyWord, String columna)
+    public Libro busquedaEspecifica(String keyWord, String tipoDeBusqueda)
     {
-        return baseDeDatos.getDato(columna , keyWord);
+        return baseDeDatos.getDato(keyWord, tipoDeBusqueda);
     }
     
-    public ArrayList<String> busquedaKeyWord(String columna)
+    public ArrayList<Libro> busquedaKeyWord()
     {
-        return baseDeDatos.getColumna(columna);
+        return baseDeDatos.getColumna();
     }
 }

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Modelo.Busqueda;
+import Modelo.Referenciacion.Referencia;
 import java.util.ArrayList;
 
 /**
@@ -11,14 +12,15 @@ import java.util.ArrayList;
  * @author danys
  */
 public abstract class Busqueda {
-    protected String tipoDeBusqueda;
     protected String keyWord;
-    public Busqueda(String tipoDeBusqueda, String keyWord)
+    protected Referencia cita;
+    protected String citacion;
+    public Busqueda(String keyWord, Referencia cita)
     {
-        this.tipoDeBusqueda = tipoDeBusqueda;
         this.keyWord = keyWord;
+        this.cita = cita;
     }
-   abstract public boolean busquedaEspecifica(String keyWord);
-   abstract public ArrayList<String> busquedaKeyWord(String keyWord);
-   
+   abstract public boolean busquedaEspecifica();
+   abstract public ArrayList<Object> busquedaKeyWord();
+   abstract public String getCita();
 }

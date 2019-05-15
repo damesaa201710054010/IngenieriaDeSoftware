@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Modelo.ConexionBaseDeDatos;
+import Modelo.Busqueda.Libro;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -44,15 +45,23 @@ public class Conexion {
      * @param columna
      * @return
      */
-    public ArrayList<String> getColumna(String columna)
+    public ArrayList<Libro> getColumna()
     {
-        ArrayList<String> resultado = new ArrayList<>();
+        Libro libro = null;
+        ArrayList<Libro> resultado = new ArrayList<>();
         try{    
-            PreparedStatement consulta = conexionBaseDeDatos.prepareStatement("SELECT"+" "+columna+" "+"FROM libros");
+            PreparedStatement consulta = conexionBaseDeDatos.prepareStatement("SELECT"+" *"+" "+"FROM libros");
             ResultSet resultados = consulta.executeQuery();
             while(resultados.next())
             {
-               resultado.add(resultados.getString(columna));
+                int idLibro = resultados.getInt(1);
+                String titulo =  resultados.getString(2);
+                String autor = resultados.getString(3);
+                int añoPublicacion = resultados.getInt(4);
+                String lugarPublicacion =resultados.getString(5);
+                String editorial = resultados.getString(6);
+                libro = new Libro(idLibro, titulo, autor, añoPublicacion, lugarPublicacion, editorial);
+                resultado.add(libro);
             }
             resultados.close();
         }catch(Exception e){
@@ -62,20 +71,27 @@ public class Conexion {
     }
     
     
-    public String  getDato(String columna, String keyWord)
+    public Libro getDato(String keyWord, String tipoDeBusqueda)
     {
-        String resultado = "";
+        Libro libro = null;
         try{  
-            PreparedStatement consulta = conexionBaseDeDatos.prepareStatement("SELECT"+" "+columna+" "+"FROM libros"+" where Titulo = "+ "\""+keyWord+"\"");
+            PreparedStatement consulta = conexionBaseDeDatos.prepareStatement("SELECT"+" *"+" "+"FROM libros"+" where "+tipoDeBusqueda+" = "+ "\""+keyWord+"\"");
             ResultSet resultados = consulta.executeQuery();
             while(resultados.next())
             {
-               resultado = resultados.getString(columna);
+                int idLibro = resultados.getInt(1);
+                String titulo =  resultados.getString(2);
+                String autor = resultados.getString(3);
+                int añoPublicacion = resultados.getInt(4);
+                String lugarPublicacion =resultados.getString(5);
+                String editorial = resultados.getString(6);
+                libro = new Libro(idLibro, titulo, autor, añoPublicacion, lugarPublicacion, editorial);
+                break;
             }
             resultados.close();
         }catch(Exception e){
             System.out.println(e);
         }
-        return resultado;
+        return libro;
     }
 }
