@@ -19,8 +19,8 @@ public class Main {
     
     
     public static void main(String[] args) {
-        Conexion bd = new Conexion();
-        System.out.println(bd.getDato("Titulo", "Jamas"));
+        ControladorPrincipal controlador= new ControladorPrincipal();
+        controlador.comunicacion();
     }
     
 }

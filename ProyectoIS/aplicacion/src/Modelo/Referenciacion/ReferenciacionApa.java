@@ -13,7 +13,7 @@ public class ReferenciacionApa implements Referencia {
     @Override
     public String construirCita(String autor, int añoPublicacion, String titulo, String lugarPublicacion, String editorial)
     {
-        String cita = "autor. "+" ("+añoPublicacion+"). "+titulo+". "+lugarPublicacion+":"+editorial+".";
+        String cita = autor+" "+" ("+añoPublicacion+"). "+titulo+". "+lugarPublicacion+":"+editorial+".";
         return cita;
     }
 }

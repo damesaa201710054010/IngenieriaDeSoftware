@@ -5,52 +5,53 @@
  */
 package Controlador;
 import java.net.*;
-//importar la libreria java.net
- 
 import java.io.*;
 import static java.lang.System.in;
 import Modelo.ConexionBaseDeDatos.Conexion;
 import Modelo.ConexionBaseDeDatos.ConexionMedia;
 import Modelo.Busqueda.Busqueda;
 import Modelo.Busqueda.BusquedaAutor;
-//importar la libreria java.io
 /**
  *
  * @author danys
  */
 public class ControladorPrincipal {
-    String keyWord;
+    String envioDeResultado = "";
     Conexion conexionBase = new Conexion();
     ConexionMedia intermediario = new ConexionMedia(conexionBase);
-    String envioDeResultado;
+    ControladorBusqueda busquedas = new ControladorBusqueda(intermediario);
     public void comunicacion()
     {
         ServerSocket servidor;
-        Socket sc  = null;
-        int puerto = 15000;
-        DataInputStream in;
-        DataOutputStream out;
-        System.out.println("esperand1o");
+        ServerSocket servidor2;
+        
+        System.out.println("esperando");
         try
         {
-            servidor = new ServerSocket(puerto);
-            System.out.println("esperando");
+            servidor = new ServerSocket(30000);
+            servidor2 = new ServerSocket(40000);
             while(true)
             {
-                System.out.println("esperando R");
-                sc = servidor.accept();
-                System.out.println("esperando");
-                in = new DataInputStream(sc.getInputStream());
-                out = new DataOutputStream(sc.getOutputStream());
-                System.out.println("esperando");
-                keyWord = in.readUTF();
+                Socket sc = servidor.accept();
+                Socket sc2 = servidor2.accept();
+                BufferedReader entrada = new BufferedReader(new InputStreamReader(sc.getInputStream()));
+                BufferedReader entrada1 = new BufferedReader(new InputStreamReader(sc2.getInputStream()));
+                DataOutputStream out = new DataOutputStream(sc.getOutputStream());
+                PrintWriter salida = new PrintWriter(new OutputStreamWriter(sc.getOutputStream()));
+                //PrintWriter salida1 = new PrintWriter(new OutputStreamWriter(sc2.getOutputStream()));
+                String keyWord = entrada.readLine().toString();
+                String tipoBusqueda = entrada1.readLine().toString();
                 System.out.println(keyWord);
-                BusquedaAutor busqueda = new BusquedaAutor("Titulo", keyWord, intermediario);
-                envioDeResultado = busqueda.realizarBusqueda();
-                out.writeUTF(envioDeResultado);
+                System.out.println(tipoBusqueda);
+                if(tipoBusqueda.equalsIgnoreCase("Titulo") || tipoBusqueda.equalsIgnoreCase("Autor") )
+                {
+                    envioDeResultado = busquedas.busqueda(keyWord, tipoBusqueda);
+                }
+                System.out.println(envioDeResultado);
+                salida.print(envioDeResultado);
                 sc.close();
+                sc2.close();
             }
-            
          }catch (Exception e) 
          {
              System.err.println(e.getMessage());

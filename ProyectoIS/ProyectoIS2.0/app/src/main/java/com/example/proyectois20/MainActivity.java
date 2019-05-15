@@ -1,5 +1,6 @@
 package com.example.proyectois20;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,44 +8,100 @@ import android.widget.EditText;
 import android.widget.TextView;
 import java.net.*;
 import java.io.*;
-import static java.lang.System.in;
+
 public class MainActivity extends AppCompatActivity {
-    private EditText texto1;
-    private TextView resultado;
+    private EditText busquedaPorTitulo;
+    private EditText busquedaServicio;
+    private EditText busquedaPorAutor;
+    private TextView resultadoLibros;
+    private  TextView resultadoServicio;
+    private TextView viewResultado;
+    private static Socket s;
+    private  static Socket s2;
+    private static InputStreamReader isr;
+    private static BufferedReader br;
+    private static PrintWriter printWriter;
+    private static PrintWriter printWriter2;
+    private static String resultadoFinal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        texto1= (EditText) findViewById(R.id.columna_titulo);
-        resultado = (TextView) findViewById(R.id.txt_resultado);
+        busquedaPorTitulo = (EditText) findViewById(R.id.busquedaTitulo);
+        busquedaPorAutor = (EditText) findViewById(R.id.busquedaAutor);
+        busquedaServicio = (EditText) findViewById(R.id.busquedaServicio);
+        resultadoLibros = (TextView) findViewById(R.id.resultadoLibros);
+        resultadoServicio = (TextView) findViewById(R.id.resultadoServicio);
+        viewResultado = (TextView) findViewById(R.id.viewReferencia);
     }
 
-    //este metodo realiza la comunicaion
-    public void busquedaPorTitulo(View view)
-    {
+    class myTask extends AsyncTask<Void, Void, Void> {
+        String clave;
+        String tipoBusqueda;
+        public void setClave(String clave) {
+            this.clave = clave;
+        }
 
-        String columna = texto1.getText().toString();
-        String HOST = "192.168.137.1";
-        int puerto = 15000;
-        DataInputStream in;
-        DataOutputStream out;
-        //resultado.setText(columna+" se encontro disponible en "+ "titulo");
-        try {
-            //System.out.println("h");
-            Socket sc = new Socket(HOST, puerto);
-            resultado.setText(columna);
-            in = new DataInputStream(sc.getInputStream());
-            out = new DataOutputStream(sc.getOutputStream());
-            out.writeUTF(columna);
-            String res = in.readUTF();
-            sc.close();
-            resultado.setText(res);
-        }catch(Exception e)
+        public void setTipoBusqueda(String tipoBusqueda)
         {
-            System.out.println(e);
+            this.tipoBusqueda = tipoBusqueda;
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                s = new Socket("192.168.42.113", 30000);
+                s2 = new Socket("192.168.42.113", 40000);
+                BufferedReader entrada = new BufferedReader(new InputStreamReader(s.getInputStream()));
+                DataInputStream in = new DataInputStream(s.getInputStream());
+                printWriter = new PrintWriter(s.getOutputStream());
+                printWriter2 = new PrintWriter(s2.getOutputStream());
+                printWriter.write(clave);
+                //resultadoLibros.setText(tipoBusqueda);
+                printWriter2.write(tipoBusqueda);
+                //resultadoFinal = in.readUTF();
+                printWriter.flush();
+                printWriter.close();
+                printWriter2.flush();
+                printWriter2.close();
+                resultadoFinal = entrada.readLine().toString();
+                s.close();
+                s2.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
         }
     }
 
+
+    public void busquedaPorTitulo(View view)
+    {
+        String keyWord = busquedaPorTitulo.getText().toString();
+        myTask my = new myTask();
+        my.setClave(keyWord);
+        my.setTipoBusqueda("Titulo");
+        my.execute();
+        resultadoLibros.setText(resultadoFinal);
+    }
+
+    public void busquedaPorAutor(View view)
+    {
+        String keyWord = busquedaPorAutor.getText().toString();
+        myTask my = new myTask();
+        my.setClave(keyWord);
+        my.setTipoBusqueda("Autor");
+        my.execute();
+        resultadoLibros.setText(keyWord);
+    }
+
+    public void busquedaPorServicio(View view)
+    {
+        String keyWord = busquedaServicio.getText().toString();
+        myTask my = new myTask();
+        my.setClave(keyWord);
+        my.execute();
+        resultadoServicio.setText(keyWord);
+    }
 
 }
