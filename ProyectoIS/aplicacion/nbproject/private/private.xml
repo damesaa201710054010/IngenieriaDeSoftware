@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/Controlador/Main.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>22</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/cygwin64/home/danys/repU/IngenieriaDeSoftware/aplicacion/src/Busqueda/BusquedaMaterial.java</file>
-            <file>file:/C:/cygwin64/home/danys/repU/IngenieriaDeSoftware/aplicacion/src/Referenciacion/Referencia.java</file>
-            <file>file:/C:/cygwin64/home/danys/repU/IngenieriaDeSoftware/aplicacion/src/Referenciacion/Referenciacion.java</file>
-            <file>file:/C:/cygwin64/home/danys/repU/IngenieriaDeSoftware/aplicacion/src/Controlador/Conexion.java</file>
-            <file>file:/C:/cygwin64/home/danys/repU/IngenieriaDeSoftware/aplicacion/src/Controlador/Controlador.java</file>
-            <file>file:/C:/cygwin64/home/danys/repU/IngenieriaDeSoftware/aplicacion/src/Busqueda/Busqueda.java</file>
+            <file>file:/C:/cygwin64/home/danys/repU/IngenieriaDeSoftware/ProyectoIS/aplicacion/src/Controlador/Main.java</file>
+            <file>file:/C:/cygwin64/home/danys/repU/IngenieriaDeSoftware/ProyectoIS/aplicacion/src/Modelo/Busqueda/BusquedaTitulo.java</file>
+            <file>file:/C:/cygwin64/home/danys/repU/IngenieriaDeSoftware/ProyectoIS/aplicacion/src/Vista/Respuesta.java</file>
+            <file>file:/C:/cygwin64/home/danys/repU/IngenieriaDeSoftware/ProyectoIS/aplicacion/src/Modelo/Referenciacion/ReferenciacionApa.java</file>
+            <file>file:/C:/cygwin64/home/danys/repU/IngenieriaDeSoftware/ProyectoIS/aplicacion/src/Modelo/Busqueda/Busqueda.java</file>
+            <file>file:/C:/cygwin64/home/danys/repU/IngenieriaDeSoftware/ProyectoIS/aplicacion/src/Controlador/ControladorPrincipal.java</file>
+            <file>file:/C:/cygwin64/home/danys/repU/IngenieriaDeSoftware/ProyectoIS/aplicacion/src/Controlador/ControladorBusqueda.java</file>
+            <file>file:/C:/cygwin64/home/danys/repU/IngenieriaDeSoftware/ProyectoIS/aplicacion/src/Modelo/ConexionBaseDeDatos/ConexionMedia.java</file>
+            <file>file:/C:/cygwin64/home/danys/repU/IngenieriaDeSoftware/ProyectoIS/aplicacion/src/Modelo/Busqueda/BusquedaAutor.java</file>
         </group>
     </open-files>
 </project-private>

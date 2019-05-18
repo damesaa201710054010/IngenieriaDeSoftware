@@ -1,5 +1,4 @@
 package com.example.proyectois20;
-
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -50,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                s = new Socket("192.168.42.113", 30000);
-                s2 = new Socket("192.168.42.113", 40000);
+                s = new Socket("192.168.128.196", 30000);
+                s2 = new Socket("192.168.128.196", 40000);
                 BufferedReader entrada = new BufferedReader(new InputStreamReader(s.getInputStream()));
                 DataInputStream in = new DataInputStream(s.getInputStream());
                 printWriter = new PrintWriter(s.getOutputStream());

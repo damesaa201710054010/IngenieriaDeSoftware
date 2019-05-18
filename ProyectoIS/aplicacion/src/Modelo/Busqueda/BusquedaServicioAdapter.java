@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Modelo.Busqueda;
+import Modelo.Referenciacion.Referencia;
 import java.util.ArrayList;
 
 /**
@@ -12,9 +13,9 @@ import java.util.ArrayList;
  */
 public class BusquedaServicioAdapter extends Busqueda {
     private BusquedaServicio servicio;
-    public BusquedaServicioAdapter(String keyWord)
+    public BusquedaServicioAdapter(String keyWord, Referencia cita)
     {
-        super(keyWord);
+        super(keyWord, cita);
         servicio = new BusquedaServicio(keyWord);
     }
     
@@ -37,6 +38,11 @@ public class BusquedaServicioAdapter extends Busqueda {
         ArrayList<Object> consulta = new ArrayList<>();
         consulta = servicio.busquedaDescripcion(keyWord);
         return consulta;
+    }
+    
+    public String getCita()
+    {
+        return citacion;
     }
     
 }

@@ -16,8 +16,6 @@ public class Main {
     /**
      * @param args the command line argument
      */
-    
-    
     public static void main(String[] args) {
         ControladorPrincipal controlador= new ControladorPrincipal();
         controlador.comunicacion();
