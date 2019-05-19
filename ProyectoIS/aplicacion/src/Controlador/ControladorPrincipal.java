@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controlador;
 import java.net.*;
 import java.io.*;
@@ -12,14 +7,20 @@ import Modelo.ConexionBaseDeDatos.ConexionMedia;
 import Modelo.Busqueda.Busqueda;
 import Modelo.Busqueda.BusquedaAutor;
 /**
- *
- * @author danys
+ * Ejecuta el programa y establece la conexion con el cliente.
+ * @author Daniel Mesa, Felipe Olaya
+ * @version 1.0
  */
 public class ControladorPrincipal {
     String envioDeResultado = "";
     Conexion conexionBase = new Conexion();
     ConexionMedia intermediario = new ConexionMedia(conexionBase);
     ControladorBusqueda busquedas = new ControladorBusqueda(intermediario);
+    /**
+     * Este metodo realiza la comunicacion con el cliente, ademas ejecuta el programa, tenieando la decision del tipo de busqueda que debe de realizar
+     * ademas este es el unico que e debe de conectar con el servidor, por lo tanto debe de enviar tambien la respuesta al cliente
+     * 
+     */
     public void comunicacion()
     {
         ServerSocket servidor;
@@ -38,7 +39,6 @@ public class ControladorPrincipal {
                 BufferedReader entrada1 = new BufferedReader(new InputStreamReader(sc2.getInputStream()));
                 DataOutputStream out = new DataOutputStream(sc.getOutputStream());
                 PrintWriter salida = new PrintWriter(new OutputStreamWriter(sc.getOutputStream()));
-                //PrintWriter salida1 = new PrintWriter(new OutputStreamWriter(sc2.getOutputStream()));
                 String keyWord = entrada.readLine().toString();
                 String tipoBusqueda = entrada1.readLine().toString();
                 System.out.println(keyWord);

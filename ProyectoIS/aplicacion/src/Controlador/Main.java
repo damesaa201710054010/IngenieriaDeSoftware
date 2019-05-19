@@ -1,19 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controlador;
 
 import Modelo.Busqueda.BusquedaAutor;
 import Modelo.ConexionBaseDeDatos.Conexion;
 /**
- *
- * @author danys
+ * Clase principal para el llamado del sistema
+ * @author Daniel Mesa, Felipe Olaya
+ * @version 1.0
  */
 public class Main {
 
     /**
+     * Crea el controlador principal para la ejecucion del programa
      * @param args the command line argument
      */
     public static void main(String[] args) {
